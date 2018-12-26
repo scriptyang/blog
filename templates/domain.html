@@ -1,0 +1,281 @@
+{% extends 'init.html' %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="/static/assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>Light Bootstrap Dashboard PRO by Creative Tim</title>
+    {% block head_js %}
+        <style>
+    td {white-space:nowrap;overflow:hidden;text-overflow: ellipsis;}
+        .order {
+   height: 60px;
+   line-height: 60px;
+   text-align: center;
+}
+ .order .line {
+   display: inline-block;
+   width: 150px;
+   border-top: 1px solid #ccc ;
+}
+.order .txt {
+   color: #686868;
+   vertical-align: middle;
+
+</style>
+
+    {% endblock %}
+
+</head>
+<body>
+
+
+{% block page %}
+
+
+
+
+
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+
+                        <div class="toolbar">
+                            <!--        Here you can write extra buttons/actions for the toolbar              -->
+                        </div>
+
+                        <table id="bootstrap-table" class="table" style="table-layout: fixed;">
+                            <thead>
+                            <th data-field="Type">Type</th>
+                            <th data-field="Host">Host</th>
+                            <th data-field="Value">地址</th>
+                            <th data-field="Status">状态</th>
+                            <th data-field="actions" class="td-actions text-right" data-events="operateEvents"
+                                data-formatter="operateFormatter">Actions
+                            </th>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div><!--  end card  -->
+                </div> <!-- end col-md-12 -->
+            </div> <!-- end row -->
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+</body>
+
+{% block end_js %}
+    <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/static/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+    <!--  Forms Validations Plugin -->
+    <script src="/static/js/jquery.validate.min.js"></script>
+
+    <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+    <script src="/static/js/moment.min.js"></script>
+
+    <!--  Date Time Picker Plugin is included in this js file -->
+    <script src="/static/js/bootstrap-datetimepicker.js"></script>
+
+    <!--  Select Picker Plugin -->
+    <script src="/static/js/bootstrap-selectpicker.js"></script>
+
+    <!--  Checkbox, Radio, Switch and Tags Input Plugins -->
+    <script src="/static/js/bootstrap-checkbox-radio-switch-tags.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="/static/js/bootstrap-notify.js"></script>
+
+    <!-- Sweet Alert 2 plugin -->
+    <script src="/static/js/sweetalert2.js"></script>
+
+    <!-- Vector Map plugin -->
+    <script src="/static/js/jquery-jvectormap.js"></script>
+
+    <!-- Wizard Plugin    -->
+    <script src="/static/js/jquery.bootstrap.wizard.min.js"></script>
+
+    <!--  Bootstrap Table Plugin    -->
+    <script src="/static/js/bootstrap-table.js"></script>
+
+    <!--  Plugin for DataTables.net  -->
+    <script src="/static/js/jquery.datatables.js"></script>
+
+    <!--  Full Calendar Plugin    -->
+    <script src="/static/js/fullcalendar.min.js"></script>
+
+    <!-- Light Bootstrap Dashboard Core javascript and methods -->
+    <script src="/static/js/light-bootstrap-dashboard.js"></script>
+
+    <!--   Sharrre Library    -->
+    <script src="/static/js/jquery.sharrre.js"></script>
+
+
+
+
+    <script type="text/javascript">
+
+        var $table = $('#bootstrap-table');
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">',
+                '<i class="fa fa-image"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Remove" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)">',
+                '<i class="fa fa-remove"></i>',
+                '</a>'
+            ].join('');
+        }
+
+        $().ready(function () {
+            window.operateEvents = {
+                'click .view': function (e, value, row, index) {
+                    info = JSON.stringify(row);
+
+                    swal({
+                        html: row['swal'],
+                        showConfirmButton: false
+                    });
+                },
+                'click .edit': function (e, value, row, index) {
+
+                    swal({
+                            html: '<div class="form-group">\n' +
+                            '    <label class="col-sm-2 control-label">备注</label>\n' +
+                            '    <div class="col-sm-10">\n' +
+                            '      <input type="text" class="form-control" id="remark" placeholder="" value="' + row['remark'] + '">\n' +
+                            '    </div>\n' +
+                            '  </div>' +
+                            '</br>'
+                        },
+                        function () {
+                            $.ajax({
+                                    url: "{% url 'service_edit' %}",
+                                    type: "post",
+                                    dataType: 'text',
+                                    data: {
+                                        remark: document.getElementById('remark').value,
+                                        id: row['id']
+                                    },
+                                    success: function (data) {
+                                        if (document.getElementById('remark').value != row['remark']) {
+
+                                            var notify = $.notify({
+                                                    icon: 'fa fa-server',
+                                                    message: row['hostname']+"： 内容正在更新。。。 ",
+                                                },
+                                                {
+                                                    type: 'info'
+                                                }
+                                            );
+
+                                            setTimeout(function () {
+                                                notify.update('type','success')
+                                                notify.update('message', row['hostname']+"： 内容更新完成。");
+                                                $table.bootstrapTable('refresh');
+                                            }, 3000);
+
+
+                                        }
+                                    },
+
+                                }
+                            );
+
+
+                        },
+                    );
+
+
+                },
+                'click .remove': function (e, value, row, index) {
+                    $table.bootstrapTable('remove', {
+                        field: 'id',
+                        values: [row.id]
+                    });
+
+                    $.notify({
+                            icon: 'pe-7s-trash',
+                            message: row['hostname'] + "主机坐着飞机离开了！！！",
+                        },
+                        {
+                            type: 'danger'
+                        }
+                    );
+
+                    $.ajax({
+                        url: "{% url 'drop_tables' %}",
+                        type: 'post',
+                        dataType: 'strings',
+                        data: {
+                            name:'service_info',
+                            id: row.id
+                        },
+                        success: function () {
+                            alert('ok')
+                        }
+                    })
+                }
+            };
+
+            $table.bootstrapTable({
+                toolbar: ".toolbar",
+                url: '{% url "domain" %}',
+                method: 'POST',
+                clickToSelect: true,
+                showRefresh: true,
+                search: true,
+                showToggle: true,
+                showColumns: true,
+                pagination: true,
+                searchAlign: 'left',
+                pageSize: 8,
+                clickToSelect: false,
+                pageList: [8, 10, 25, 50, 100],
+
+
+                formatShowingRows: function (pageFrom, pageTo, totalRows) {
+                    //do nothing here, we don't want to show the text "showing x of y from..."
+                },
+                formatRecordsPerPage: function (pageNumber) {
+                    return pageNumber + " rows visible";
+                },
+                icons: {
+                    refresh: 'fa fa-refresh',
+                    toggle: 'fa fa-th-list',
+                    columns: 'fa fa-columns',
+                    detailOpen: 'fa fa-plus-circle',
+                    detailClose: 'fa fa-minus-circle'
+                }
+            });
+
+            //activate the tooltips after the data table is initialized
+            $('[rel="tooltip"]').tooltip();
+
+            $(window).resize(function () {
+                $table.bootstrapTable('resetView');
+            });
+
+
+        });
+
+    </script>
+
+
+{% endblock %}
+
+</html>

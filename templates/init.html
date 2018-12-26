@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} 后台管理{% endblock %}</title>
+
+
+    <!-- Bootstrap core /static/css     -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--  Light Bootstrap Dashboard core /static/css    -->
+    <link href="/static/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+    <!--  /static/css for Demo Purpose, don't include it in your project     -->
+    <link href="/static/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='/static/css/685fd913f1e14aebad0cc9d3713ee469.css' rel='stylesheet' type='text/css'>
+    <link href="/static/css/pe-icon-7-stroke.css" rel="stylesheet" />
+{% block head_js %}
+{% endblock %}
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar" data-color="orange" >
+
+
+        <div class="logo">
+            <a href="{% url 'login_index' %}" class="logo-text">
+                后台管理
+            </a>
+        </div>
+
+    	<div class="sidebar-wrapper">
+
+            <div class="user">
+                <div class="photo">
+                    <img src="/static/picture/user.png" />
+                </div>
+                <div class="info">
+                    <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                        {{ user }}
+                        <b class="caret"></b>
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <ul class="nav">
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="{% url 'user_sett' %}">Settings</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav">
+                
+                <li>
+                    <a href="{% url 'login_index' %}">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <!--<li>
+                    <a data-toggle="collapse" href="#componentsExamples">
+
+                        <i class="pe-7s-plugin"></i>
+                        <p>Components
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="componentsExamples">
+                        <ul class="nav">
+                            <li><a href="/static/components/buttons.html">Buttons</a></li>
+                            <li><a href="/static/components/grid.html">Grid System</a></li>
+                            <li><a href="/static/components/icons.html">Icons</a></li>
+                            <li><a href="/static/components/notifications.html">Notifications</a></li>
+                            <li><a href="/static/components/panels.html">Panels</a></li>
+                            <li><a href="/static/components/sweet-alert.html">Sweet Alert</a></li>
+                            <li><a href="/static/components/typography.html">Typography</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#formsExamples">
+                        <i class="pe-7s-note2"></i>
+                        <p>Forms
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="formsExamples">
+                        <ul class="nav">
+                            <li><a href="/static/forms/regular.html">Regular Forms</a></li>
+                            <li><a href="/static/forms/extended.html">Extended Forms</a></li>
+                            <li><a href="/static/forms/validation.html">Validation Forms</a></li>
+                            <li><a href="/static/forms/wizard.html">Wizard</a></li>
+                        </ul>
+                    </div>
+                </li> !-->
+
+                <li>
+                    <a data-toggle="collapse" href="#tablesExamples">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>服务操作
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tablesExamples">
+                        <ul class="nav">
+                            <li><a href="{% url 'domain' %}">dns域名</a></li>
+                            <li><a href="{% url 'task_list' %}">工单列表</a></li>
+                            <li><a href="{% url 'bootstrap_table' %}">服务信息</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--
+                <li>
+                    <a data-toggle="collapse" href="#mapsExamples">
+                        <i class="pe-7s-map-marker"></i>
+                        <p>Maps
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="mapsExamples">
+                        <ul class="nav">
+                            <li><a href="/static/maps/google.html">Google Maps</a></li>
+                            <li><a href="/static/maps/vector.html">Vector Maps</a></li>
+                            <li><a href="/static/maps/fullscreen.html">Full Screen Map</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/static/charts.html">
+                        <i class="pe-7s-graph1"></i>
+                        <p>Charts</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/static/calendar.html">
+                        <i class="pe-7s-date"></i>
+                        <p>Calendar</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#pagesExamples">
+                        <i class="pe-7s-gift"></i>
+                        <p>Pages
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="pagesExamples">
+                        <ul class="nav">
+                            <li><a href="/static/pages/login.html">Login Page</a></li>
+                            <li><a href="/static/pages/register.html">Register Page</a></li>
+                            <li><a href="/static/pages/lock.html">Lock Screen Page</a></li>
+                            <li><a href="/static/pages/user.html">User Page</a></li>
+                            <li><a href="#">More coming soon...</a></li>
+                        </ul>
+                    </div>
+                </li> !-->
+            </ul>
+    	</div>
+    </div>
+    <div class="main-panel">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-minimize">
+					<button id="minimizeSidebar" class="btn btn-warning btn-fill btn-round btn-icon">
+						<i class="fa fa-ellipsis-v visible-on-sidebar-regular"></i>
+						<i class="fa fa-navicon visible-on-sidebar-mini"></i>
+					</button>
+				</div>
+                <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">{{ head_info }}</a>
+    </div>
+    <div class="collapse navbar-collapse">
+
+        <ul class="nav navbar-nav navbar-right" style="margin-top: 1px">
+            <li>
+                <a href="/static/charts.html">
+                    <i class="fa fa-line-chart"></i>
+                    <p>Stats</p>
+                </a>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-gavel"></i>
+                    <p class="hidden-md hidden-lg">
+                        Actions
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Create New Post</a></li>
+                    <li><a href="#">Manage Something</a></li>
+                    <li><a href="#">Do Nothing</a></li>
+                    <li><a href="#">Submit to live</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Another Action</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="notification">5</span>
+                    <p class="hidden-md hidden-lg">
+                        Notifications
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Notification 1</a></li>
+                    <li><a href="#">Notification 2</a></li>
+                    <li><a href="#">Notification 3</a></li>
+                    <li><a href="#">Notification 4</a></li>
+                    <li><a href="#">Another notification</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown dropdown-with-icons">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-list"></i>
+                    <p class="hidden-md hidden-lg">
+                        More
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <ul class="dropdown-menu dropdown-with-icons">
+                    <!--
+                    <li>
+                        <a href="#">
+                            <i class="pe-7s-mail"></i> Messages
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="pe-7s-help1"></i> Help Center
+                        </a>
+                    </li> !-->
+                    <li>
+                        <a href="{% url 'user_sett' %}">
+                            <i class="pe-7s-tools"></i> Settings
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="text-danger">
+                            <i class="pe-7s-close-circle"></i>
+                            Log out
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    </div>
+    </nav>
+{% block page %}
+
+{% endblock %}
+
+    </div>
+</div>
+
+
+
+</body>
+
+{% block end_js %}
+
+{% endblock %}
+</html>
