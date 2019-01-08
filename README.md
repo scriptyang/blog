@@ -1,3 +1,3 @@
 # blog
 Version:
-django==2.1.5
+django==1.11.18
