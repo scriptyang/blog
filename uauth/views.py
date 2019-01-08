@@ -1,7 +1,12 @@
+#coding:utf-8
 from django.shortcuts import render
 from django.contrib import auth
 from django.http import HttpResponseRedirect
-from assets.models import service_info,Domain_info
+from assets.models import service_info
+try:
+    from domain.models import Domain_info
+except:
+    domain = '无'
 from tasks.models import Task_info
 from .models import login_info
 
@@ -10,7 +15,8 @@ def index(request):
     head_info = "Dashboard Pro"
     service_num =  service_info.objects.all().count()
     tasks_num = Task_info.objects.all().count()
-    Domain_num = Domain_info.objects.all().count()
+    if '无' not in domain:
+    	Domain_num = Domain_info.objects.all().count()
 
     login = login_info.objects.values().order_by('-id')[5:]
     if user is None:

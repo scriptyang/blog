@@ -14,13 +14,6 @@ class service_info(models.Model):
     meminfo = models.CharField(max_length=20,default='')
     remark = models.CharField(max_length=255,default='')
 
-class Domain_info(models.Model):
-    Type = models.CharField(max_length=20)
-    Host = models.CharField(max_length=50)
-    Value = models.CharField(max_length=255)
-    Status = models.CharField(max_length=255)
-
-
 class Blog_settings(models.Model):
     Aki = models.CharField(max_length=50,default='')
     Aks = models.CharField(max_length=50,default='')

@@ -9,7 +9,6 @@ urlpatterns = [
     url('folder_tree/$',folder_tree,name='folder_tree'),
     url('post_service/$',post_service),
     url('settings/$',user_sett,name='user_sett'),
-    url('domain/$',domain,name='domain')
 
 ]
 

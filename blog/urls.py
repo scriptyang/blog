@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('uauth.urls')),
     url(r'^assets/',include('assets.urls')),
-    url(r'^tasks/',include('tasks.urls'))
+    url(r'^tasks/',include('tasks.urls')),
+    #url(r'domain/',include('domain.urls'))
 ]
