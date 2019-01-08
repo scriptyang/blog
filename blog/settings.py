@@ -83,17 +83,24 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': 'pretty',
-        'PORT': 3306,
-        'TEST':{
-            'CHARSET': 'utf-8'
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'blog.db',
     }
 }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'blog',
+#        'HOST': 'localhost',
+#        'USER': 'root',
+#        'PASSWORD': 'pretty',
+#        'PORT': 3306,
+#        'TEST':{
+#            'CHARSET': 'utf-8'
+#        },
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
