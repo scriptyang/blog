@@ -21,15 +21,13 @@ def table(request):
 def post_service(request):
 
     post_service = eval(request.POST.keys()[0])
-    se = service_data.objects.filter(hostname=post_service['hostname']).count()
+    se = service_data.objects.filter(sn=post_service['sn']).count()
     if se > 0:
-        sd = service_data.objects.get(hostname=post_service['hostname'])
-        sd.abroad = post_service['abroad']
-        sd.within = post_service['within']
-        sd.meminfo = post_service['meminfo']
-        sd.cpuinfo = post_service['cpuinfo']
-        sd.diskinfo = post_service['diskinfo']
-        sd.service_port = post_service['service_port']
+        sd = service_data.objects.get(sn=post_service['sn'])
+        sd.name = post_service['name']
+        sd.l2tp = post_service['l2tp']
+        sd.ssl = post_service['ssl']
+        sd.re = post_service['re']
         sd.save()
     else:
         service_data.objects.create(**post_service)
