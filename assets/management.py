@@ -9,7 +9,4 @@ def init_data(sender, **kwargs):
             service_info.objects.get_or_create(sn=x,name='192.168.0.'+str(n))
             n += 1
 
-        dic = {'Aki': 'a', 'Aks': 'sd', 'Domain_name': 'a.com', 'server': 'div,div'}
-        Blog_settings.objects.create(**dic)
-
-#post_migrate.connect(init_data)
+post_migrate.connect(init_data)

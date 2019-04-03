@@ -58,36 +58,36 @@ def table_data(request):
     if name == 'service_info':
         data2 = list(service_data.objects.values())
 
-        for s in data2:
-            phtml = '<p>'
-            swal = '<div class="content">'
-            swal += '<div class="order"><span class="line"></span><span class="txt">系统信息</span><span class="line"></span></div>'
-
-            swal +=  '<button class ="btn btn-wd btn-info" style="line-height:22px" > 主机名称 ： % s </button>' % s['hostname']
-
-            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > cpu ： % s </button>' % s['cpuinfo']
-            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 内存 ： % s </button>' % s['meminfo']
-            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 磁盘空间 ： % s (GB) </button>' % s[
-                'diskinfo']
-            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 外网地址 ： % s </button>' % s[
-                'abroad']
-            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 内网地址 ： % s </button>' % s[
-                'within']
-            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 备注信息 ： % s </button>' % s[
-                'remark']
-            swal += '</br> <div class="order"><span class="line"></span><span class="txt">服务端口</span><span class="line"></span></div>'
-            if s['service_port']:
-                for k,v in eval(s['service_port']).items():
-                    phtml += ' %s : %s ' % (k,v)
-                    swal += '<button class="btn btn-wd btn-info" style="line-height:22px"> %s ：%s </button>' % (k,v)
-                phtml += '</p>'
-                swal += '</div>'
-            else:
-                phtml += '</p>'
-                swal += '</div>'
-
-            s['p_info'] = phtml
-            s['swal'] = swal
+#        for s in data2:
+#            phtml = '<p>'
+#            swal = '<div class="content">'
+#            swal += '<div class="order"><span class="line"></span><span class="txt">系统信息</span><span class="line"></span></div>'
+#
+#            swal +=  '<button class ="btn btn-wd btn-info" style="line-height:22px" > 主机名称 ： % s </button>' % s['hostname']
+#
+#            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > cpu ： % s </button>' % s['cpuinfo']
+#            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 内存 ： % s </button>' % s['meminfo']
+#            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 磁盘空间 ： % s (GB) </button>' % s[
+#                'diskinfo']
+#            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 外网地址 ： % s </button>' % s[
+#                'abroad']
+#            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 内网地址 ： % s </button>' % s[
+#                'within']
+#            swal += '<button class ="btn btn-wd btn-info" style="line-height:22px" > 备注信息 ： % s </button>' % s[
+#                'remark']
+#            swal += '</br> <div class="order"><span class="line"></span><span class="txt">服务端口</span><span class="line"></span></div>'
+#            if s['service_port']:
+#                for k,v in eval(s['service_port']).items():
+#                    phtml += ' %s : %s ' % (k,v)
+#                    swal += '<button class="btn btn-wd btn-info" style="line-height:22px"> %s ：%s </button>' % (k,v)
+#                phtml += '</p>'
+#                swal += '</div>'
+#            else:
+#                phtml += '</p>'
+#                swal += '</div>'
+#
+#            s['p_info'] = phtml
+#            s['swal'] = swal
 
         data2 = json.dumps(data2)
         return HttpResponse(str(data2))
