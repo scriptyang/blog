@@ -108,7 +108,7 @@ class AliDomain(object):
 
 if __name__ == '__main__':
     aki = 'LTAIEaNLSsrvKnNi'
-    aks = 'RmtJURUpnhFbw9EextTCdUoA71Hikp'
+    aks = ''
     DomainName = 'bjtraveler.club'
     AliDomain(aki, aks, DomainName).list()
     # 结果： 显示域名解析记录
