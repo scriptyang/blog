@@ -165,5 +165,5 @@ CACHES = {
 # }
 
 AKI = 'LTAIEaNLSsrvKnNi'
-AKS = 'RmtJURUpnhFbw9EextTCdUoA71Hikp'
+AKS = 'RmtJURUpnhFbw9EextTCdUikp'
 DomainName = 'bjtraveler.club'
